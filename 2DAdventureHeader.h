@@ -13,6 +13,7 @@
 #include "Marksman.h"
 #include "Brute.h"
 #include "Wolf.h"
+#include "player.h"
 
 using namespace std;       //include standard namespace
 

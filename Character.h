@@ -63,7 +63,7 @@ public:
 	* @param weapons[]       The weapons to look at.
 	* @param x               Index of new weapon
 	*/
-	void buyWeapon(SuperArray<Weapon*> weapons, int x);
+	void buyWeapon(Weapon*& weapon);
 
 	void setWeapon(const Weapon* newWeapon);
 

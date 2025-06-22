@@ -17,9 +17,8 @@ public:
 
 	Weapon(std::string name, int hitChance, int maxAttack, int minAttack, int price, std::string attackName);
 		
-	Weapon(const Weapon& other);
 
-	void operator=(const Weapon& other);
+	Weapon& operator=(const Weapon& other) = default;
 
 	void print();
 

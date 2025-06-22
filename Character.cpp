@@ -74,7 +74,11 @@ void Character::operator=(const Character& other)
 
 void Character::setWeapon(const Weapon* newWeapon)
 {
-	delete _currentWeapon;
+	if (_currentWeapon)
+	{
+		delete _currentWeapon;
+
+	}
 
 	//cam taught me derefrencing
 	//set the characters current weapon to the new one
@@ -137,19 +141,19 @@ void Character::drinkPotion()
 * @param weapons[]       The weapons to look at.
 * @param x               Index of new weapon
 */
-void Character::buyWeapon(SuperArray<Weapon*> weapons, int x)
+void Character::buyWeapon(Weapon*& weapon)
 {
 	//check if they don't have a weapon
-	if (_currentWeapon->getName() == weapons[0]->getName())
+	if (_currentWeapon->getName() == weapon->getName())
 	{
 		//check if they can afford it
-		if (_gold >= weapons[x]->getPrice())
+		if (_gold >= weapon->getPrice())
 		{
 			//charge them
-			_gold -= weapons[x]->getPrice();
+			_gold -= weapon->getPrice();
 
 			//give them the weapon
-			setWeapon(weapons[x]);
+			setWeapon(weapon);
 
 			//say bye
 			cout << "Pleasure doin business with you! Off ya go!\n";

@@ -25,23 +25,3 @@ Weapon::Weapon(std::string name, int hitChance, int maxAttack, int minAttack, in
 
 }
 
-Weapon::Weapon(const Weapon& other)
-{
-	_name = other._name;
-	_hitChance = other._hitChance;
-	_maxAttack = other._maxAttack;
-	_minAttack = other._minAttack;
-	_price = other._price;
-	_attackName = other._attackName;
-}
-
-
-void Weapon::operator=(const Weapon& other)
-{
-	_name = other._name;
-	_hitChance = other._hitChance;
-	_maxAttack = other._maxAttack;
-	_minAttack = other._minAttack;
-	_price = other._price;
-	_attackName = other._attackName;
-}

@@ -4,7 +4,7 @@
 #include <conio.h>              // for getting characters 
 #include "2DAdventureHeader.h"  // for other functions I stole from my gladiator project
 #include "Enemy.h"
-#include "Player.h"
+#include "player.h"
 #include "Constants.h"
 #include "Brute.h"
 #include "Wolf.h"	
@@ -179,28 +179,16 @@ int main()
 	//initialzie the weapons array
 	weapons.pushBack(new Weapon("fists", 100, 20 , 5, 0, "punches"));
 	weapons.pushBack(new Weapon("teeth", 70, 70, 30, 0, "bites"));
+	weapons.pushBack(new Weapon("claws", 80, 15, 10, 0, "punches"));
 	weapons.pushBack(new Weapon("desert eagle", 30, 60, 50, 120, "shoots"));
 	weapons.pushBack(new Weapon("pugio", 100, 30, 15, 55, "stabs"));
 	weapons.pushBack(new Weapon("mjolnir", 60, 70, 10, 60, "bludgeoun"));
 	weapons.pushBack(new Weapon("bow", 80, 30, 20, 24, "snipes"));
 	weapons.pushBack(new Weapon("pilum", 30, 80, 60, 40, "impales"));
 	weapons.pushBack(new Weapon("gladius", 65, 60, 50, 30, "slashes"));
-	weapons.pushBack(new Weapon("claws", 80, 15, 10, 0, "punches"));
 
 	//make the player
 	Character* player = new Player("Nathan", 0, 0, 100, 500, 3, 100, weapons[0]);
-
-	////read in player stats from file if it exists
-	//string input = "";
-	//ifstream inFile;
-	//inFile.open("names.txt");
-	//if (inFile.is_open())
-	//{
-	//	while (getline(inFile, input))
-	//	{
-	//		
-	//	}
-	//}
 
 
 	SuperArray<string>  enemyNames;
@@ -366,7 +354,7 @@ int main()
 		}
 
 		//check if player hit town
-		if (map[player->getYPos()][player->getXPos()] == map[TOWN_Y][TOWN_X])
+		if (map[player->getYPos()][player->getXPos()] == TOWN)
 		{
 			//create boolean to represent if the player is in town or not
 			bool town = true;
@@ -403,14 +391,14 @@ int main()
 						string input;
 
 						//variable to store chosen weapon index
-						int x = 0;
+						int weaponIndex = 0;
 
 						cout << "\t\tWeapon Market!\n";
 						cout << "\t\t--------------\n\n";
 						cout << "\t\tYour gold: " << player->getGold() << endl;
 
 						//loop through weapons (except teeth and fists)
-						for (int i = 2; i < NUM_OF_WEAPONS - 2; i++)
+						for (int i = 3; i < NUM_OF_WEAPONS; i++)
 						{
 							cout << "\t\t" << weapons[i]->getName() << endl;
 						}
@@ -429,7 +417,7 @@ int main()
 							getline(cin, input);
 
 							//loop through weapons (except teeth and fists)
-							for (int i = 0; i < NUM_OF_WEAPONS - 2; i++)
+							for (int i = 3; i < NUM_OF_WEAPONS; i++)
 							{
 								//check if this weapon was chosen
 								if (input == weapons[i]->getName())
@@ -438,7 +426,7 @@ int main()
 									weapons[i]->print();
 
 									//save weapon index for purchases
-									x = i;
+									weaponIndex = i;
 
 									//acknowledge it's a valid name
 									validName = true;
@@ -468,7 +456,7 @@ int main()
 								else if (input == "yes")
 								{
 									//buy it
-									player->buyWeapon(weapons, x);
+									player->buyWeapon(weapons[weaponIndex]);
 								}
 								else
 								{
@@ -484,8 +472,7 @@ int main()
 							if (player->getCurrentWeapon()->getName() != weapons[0]->getName())
 							{
 								//give the player half their original purchase
-								int salePrice = player->getCurrentWeapon()->getPrice() * 0.5;
-								player->getGold() += salePrice;
+								player->getGold() += (player->getCurrentWeapon()->getPrice() * 0.5);
 
 								//assign fists to current weapon
 								player->setWeapon(weapons[0]);
@@ -493,7 +480,7 @@ int main()
 								//print dialogue
 								cout << "\nAlright, gimme that...";
 								ICS_sleep(SLEEP_TIME);
-								cout << "\nHere's your " << salePrice << " gold.\n";
+								cout << "\nHere's your " << ICS_YELLOW_TEXT << (player->getCurrentWeapon()->getPrice() * 0.5) << ICS_WHITE_TEXT << " gold.\n";
 							}
 							//if they don't have a weapon
 							else
