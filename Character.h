@@ -17,14 +17,14 @@ protected:
 	int _gold = 0;						  //how much gold the player has
 	int _potions = 0;					  //how many potions they have
 	int _maxHealth = 0;			   	   	  //their max health
-	Weapon* _currentWeapon;				  //their current weapon
+	const Weapon* _currentWeapon;				  //their current weapon
 
 public:
 
 	/**
 	* Constructor of a Character
 	**/
-	Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, Weapon* currentWeapon);
+	Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon);
 	
 	/**
 	* Copy Constructor of a Character
@@ -63,9 +63,9 @@ public:
 	* @param weapons[]       The weapons to look at.
 	* @param x               Index of new weapon
 	*/
-	void buyWeapon(Weapon*& weapon);
+	virtual void buyWeapon(int index, const Weapon weapon[]) = 0;
 
-	void setWeapon(const Weapon* newWeapon);
+	void setWeapon(const Weapon newWeapon);
 
 	/**
 	* makes the first Character attack the second
@@ -104,7 +104,7 @@ public:
 		return _potions;
 	}
 
-	Weapon* getCurrentWeapon()
+	const Weapon* getCurrentWeapon()
 	{
 		return _currentWeapon;
 	}

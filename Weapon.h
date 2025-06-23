@@ -20,33 +20,33 @@ public:
 
 	Weapon& operator=(const Weapon& other) = default;
 
-	void print();
+	void print() const;
 
-	std::string getName()
+	std::string getName() const
 	{
 		return _name;
 	}
 
-	std::string getAttackName()
+	std::string getAttackName() const
 	{
 		return _attackName;
 	}
-	int getHitChance()
+	int getHitChance() const
 	{
 		return _hitChance;
 	}
 
-	int getMaxAttack()
+	int getMaxAttack() const
 	{
 		return _maxAttack;
 	}
 
-	int getMinAttack()
+	int getMinAttack() const
 	{
 		return _minAttack;
 	}
 
-	int getPrice()
+	int getPrice() const
 	{
 		return _price;
 	}

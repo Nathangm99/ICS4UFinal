@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-void Weapon::print()
+void Weapon::print() const
 {
 	//print each of the weapon's attributes
 	std::cout << "\nName:       " << _name << std::endl;

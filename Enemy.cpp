@@ -7,7 +7,7 @@
 /**
 * Constructor of an Enemy
 **/
-Enemy::Enemy(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, Weapon* currentWeapon)
+Enemy::Enemy(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:
 	Character(name, xPos, yPos, health, gold, potions, maxHealth, currentWeapon)
 {
@@ -67,3 +67,13 @@ void Enemy::takeTurn(Character* victim)
 }
 
 
+/**
+* function to buy a weapon
+*
+* @param weapons[]       The weapons to look at.
+* @param x               Index of new weapon
+*/
+void Enemy::buyWeapon(int index, const Weapon weapon[])
+{
+	cout << "enemy should not be buying a weapon!\n";
+}

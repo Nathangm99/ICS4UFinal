@@ -31,18 +31,18 @@ Brute::Brute(std::string name, int xPos, int yPos)
 
 	if (newWeapon == 0)
 	{
-		_currentWeapon = new Weapon("fists", 100, 10, 5, 0, "punches");
+		_currentWeapon =  &weapons[0];
 	}
 	else if (newWeapon == 1)
 	{
-		_currentWeapon = new Weapon("pugio", 100, 30, 15, 55, "stabs");
+		_currentWeapon = &weapons[4];
 	}
 	else if (newWeapon == 2)
 	{
-		_currentWeapon = new Weapon("gladius", 65, 60, 50, 30, "slashes");
+		_currentWeapon = &weapons[8];
 	}
 	else
 	{
-		_currentWeapon = new Weapon("teeth", 70, 70, 30, 0, "bites");
+		_currentWeapon = &weapons[1];
 	}
 }

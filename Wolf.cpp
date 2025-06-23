@@ -20,17 +20,17 @@ Wolf::Wolf(std::string name, int xPos, int yPos)
 
 	//Gold stays at 0 they're animals
 
-	//Gold stays at 0 they're animals
+	//Potions stays at 0 they're animals
 	 
 	
 	//randomize the weapon for the Wolf
 	int newWeapon = randNumGen(0, 1);
 	if (newWeapon == 0)
 	{
-		_currentWeapon = new Weapon("claws", 80, 15, 10, 0, "punches");
+		_currentWeapon = &weapons[1];
 	}
 	else
 	{
-		_currentWeapon = new Weapon("teeth", 70, 70, 30, 0, "bites");
+		_currentWeapon = &weapons[2];
 	}
 }

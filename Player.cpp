@@ -8,7 +8,7 @@
 /**
 * Constructor of an Player
 **/
-Player::Player(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, Weapon* currentWeapon)
+Player::Player(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:
 	Character(name, xPos, yPos, health, gold, potions, maxHealth, currentWeapon)
 {
@@ -60,5 +60,42 @@ void Player::takeTurn(Character* victim)
 				cout << endl << endl << input << " is an invalid command. (Valid commands are:  attack, drink)\n\n";
 			}
 		}
+	}
+}
+
+/**
+* function to buy a weapon
+*
+* @param weapons[]       The weapons to look at.
+* @param x               Index of new weapon
+*/
+void Player::buyWeapon(int index, const Weapon weapon[])
+{
+	//check if they don't have a weapon
+	if (_currentWeapon->getName() == weapon[0].getName())
+	{
+		//check if they can afford it
+		if (_gold >= weapon[index].getPrice())
+		{
+			//charge them
+			_gold -= weapon[index].getPrice();
+
+			//give them the weapon
+			setWeapon(weapon[index]);
+
+			//say bye
+			cout << "Pleasure doin business with you! Off ya go!\n";
+		}
+		//if they can't afford it
+		else
+		{
+			//
+			cout << "You can't afford that!\n";
+		}
+	}
+	//check if they have a weapon
+	else
+	{
+		cout << "You already have a weapon equipped, sell it before you get this one!\n";
 	}
 }

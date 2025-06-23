@@ -6,7 +6,7 @@
 #include "Utils.h"
 
 
-Character::Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, Weapon* currentWeapon)
+Character::Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:	
 	_name(name),
 	_xPos(xPos),
@@ -50,39 +50,12 @@ void Character::print()
 **/
 Character::~Character()
 {
-	if(_currentWeapon != nullptr)
-	{
-		delete _currentWeapon; 
-	}
 }
 
-/**
-* Operator for Character
-**/
-void Character::operator=(const Character& other)
+
+void Character::setWeapon(const Weapon newWeapon)
 {
-	_name = other._name;
-	_xPos = other._xPos;
-	_yPos = other._yPos;
-	_health = other._health;
-	_gold = other._gold;
-	_potions = other._potions;
-	_maxHealth = other._maxHealth;
-	delete _currentWeapon;
-	_currentWeapon = other._currentWeapon;
-}
-
-void Character::setWeapon(const Weapon* newWeapon)
-{
-	if (_currentWeapon)
-	{
-		delete _currentWeapon;
-
-	}
-
-	//cam taught me derefrencing
-	//set the characters current weapon to the new one
-	_currentWeapon = new Weapon(*(newWeapon));
+	_currentWeapon = new Weapon(newWeapon);
 }
 
 /**
@@ -132,43 +105,6 @@ void Character::drinkPotion()
 
 		//exit function
 		return;
-	}
-}
-
-/**
-* function to buy a weapon
-*
-* @param weapons[]       The weapons to look at.
-* @param x               Index of new weapon
-*/
-void Character::buyWeapon(Weapon*& weapon)
-{
-	//check if they don't have a weapon
-	if (_currentWeapon->getName() == weapon->getName())
-	{
-		//check if they can afford it
-		if (_gold >= weapon->getPrice())
-		{
-			//charge them
-			_gold -= weapon->getPrice();
-
-			//give them the weapon
-			setWeapon(weapon);
-
-			//say bye
-			cout << "Pleasure doin business with you! Off ya go!\n";
-		}
-		//if they can't afford it
-		else
-		{
-			//
-			cout << "You can't afford that!\n";
-		}
-	}
-	//check if they have a weapon
-	else
-	{
-		cout << "You already have a weapon equipped, sell it before you get this one!\n";
 	}
 }
 

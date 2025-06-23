@@ -31,14 +31,14 @@ Marksman::Marksman(std::string name, int xPos, int yPos)
 
 	if (newWeapon == 0)
 	{
-		_currentWeapon = new Weapon("desert eagle", 30, 60, 50, 120, "shoots");
+		_currentWeapon = &weapons[3];
 	}
 	else if (newWeapon == 1)
 	{
-		_currentWeapon = new Weapon("pilum", 30, 80, 60, 40, "impales");
+		_currentWeapon = &weapons[6];
 	}
 	else
 	{
-		_currentWeapon = new Weapon("bow", 80, 30, 20, 24, "snipes");
+		_currentWeapon = &weapons[7];
 	}
 }
