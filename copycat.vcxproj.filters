@@ -51,6 +51,9 @@
     <ClCompile Include="Wolf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="2DAdventure.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h">
@@ -68,7 +71,7 @@
     <ClInclude Include="Weapon.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="2DAdventureHeader.h">
+    <ClInclude Include="2DAdventure.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Constants.h">

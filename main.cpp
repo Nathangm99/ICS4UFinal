@@ -2,7 +2,7 @@
 #include "Character.h"
 #include "ICS_ConsoleHelper.h"	// for colors, sleeping, pausing...
 #include <conio.h>              // for getting characters 
-#include "2DAdventureHeader.h"  // for other functions I stole from my gladiator project
+#include "2DAdventure.h"  // for other functions I stole from my gladiator project
 #include "Enemy.h"
 #include "player.h"
 #include "Constants.h"
@@ -18,10 +18,8 @@ int main()
 	//seed random number
 	srand((unsigned int)time(NULL));
 
-
 	//make the player
 	Character* player = new Player("Nathan", 0, 0, 100, 500, 3, 100, &weapons[0]);
-
 
 	SuperArray<string>  enemyNames;
 
@@ -56,6 +54,7 @@ int main()
 	SuperArray<Character*> enemies;
 	for (int i = 0; i < MAX_ENEMIES; i++)
 	{
+		//add an enemy to the array
 		addEnemy(enemies, enemyNames);
 	}
 

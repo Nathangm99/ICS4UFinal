@@ -71,31 +71,31 @@ void Player::takeTurn(Character* victim)
 */
 void Player::buyWeapon(int index, const Weapon weapon[])
 {
-	//check if they don't have a weapon
-	if (_currentWeapon->getName() == weapon[0].getName())
-	{
-		//check if they can afford it
-		if (_gold >= weapon[index].getPrice())
+		//check if they don't have a weapon
+		if (_currentWeapon->getName() == weapon[0].getName())
 		{
-			//charge them
-			_gold -= weapon[index].getPrice();
+			//check if they can afford it
+			if (_gold >= weapon[index].getPrice())
+			{
+				//charge them
+				_gold -= weapon[index].getPrice();
 
-			//give them the weapon
-			setWeapon(weapon[index]);
+				//give them the weapon
+				setWeapon(weapon[index]);
 
-			//say bye
-			cout << "Pleasure doin business with you! Off ya go!\n";
+				//say bye
+				cout << "Pleasure doin business with you! Off ya go!\n";
+			}
+			//if they can't afford it
+			else
+			{
+				//tell them they're broke
+				cout << "You can't afford that!\n";
+			}
 		}
-		//if they can't afford it
+		//check if they have a weapon
 		else
 		{
-			//
-			cout << "You can't afford that!\n";
+			cout << "You already have a weapon equipped, sell it before you get this one!\n";
 		}
-	}
-	//check if they have a weapon
-	else
-	{
-		cout << "You already have a weapon equipped, sell it before you get this one!\n";
-	}
 }

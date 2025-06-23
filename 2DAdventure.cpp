@@ -1,22 +1,5 @@
 #pragma once
-#include <string>                //for strings
-#include <iostream>              //for cin and cout
-#include <windows.h>             // for Sleep_()
-#include <fstream>               // for save file
-#include "ICS_ConsoleHelper.h"
-#include "ICS_Helpers.h"
-#include "SuperArray.h"
-#include "Weapon.h"
-#include "Character.h"
-#include "Constants.h"
-#include "Utils.h"
-#include "Marksman.h"
-#include "Brute.h"
-#include "Wolf.h"
-#include "player.h"
-
-using namespace std;       //include standard namespace
-
+#include "2DAdventure.h"
 
 /**
 * prints the fighter's stats
@@ -141,6 +124,7 @@ bool fight(Character* player, Character* enemy)
 		return true;
 	}
 }
+
 
 void shop(const Weapon weapons[], Character* player)
 {
@@ -950,7 +934,6 @@ void town(const Weapon enemies[], Character* player)
 	cout << ICS_BLACK_BACKGROUND;
 	cout << ICS_WHITE_TEXT;
 }
-
 
 /**
 *function for opening the legend
