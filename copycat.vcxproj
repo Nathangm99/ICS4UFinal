@@ -28,7 +28,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Marksman.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="RangedEnemy.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Weapon.cpp" />
     <ClCompile Include="Wolf.cpp" />

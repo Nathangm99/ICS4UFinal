@@ -1,4 +1,4 @@
-#include "Utils.h"
+#include "Utils.h"			//for the function declarations
 
 /**
 *generates a random number
@@ -10,5 +10,6 @@
 */
 int randNumGen(int min, int max)
 {
+	//return a random number from min to max
 	return rand() % (max - min + 1) + min;
 }

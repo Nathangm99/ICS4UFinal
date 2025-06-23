@@ -1,12 +1,21 @@
-#include "player.h"
-#include <iostream>
-#include <string>
-#include "Constants.h"
-#include "Utils.h"
-#include <Windows.h>
+#include "Player.h"				//for player class
+#include <iostream>				//for cout, endl
+#include <string>				//for strings
+#include "Constants.h"			//for constants
+#include "Utils.h"				//for utilities
+#include <Windows.h>			//for cls, sleep, pause
 
 /**
 * Constructor of an Player
+* 
+* @param name					the name of the Player
+* @param xPos					the xPos of the Player
+* @param yPos					the yPos of the Player
+* @param health					the health of the Player
+* @param gold					the gold of the Player
+* @param potions				the potions of the Player
+* @param maxHealth				the maxHealth of the Player
+* @param currentWeapon			the currentWeapon of the Player
 **/
 Player::Player(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:
@@ -15,6 +24,11 @@ Player::Player(std::string name, int xPos, int yPos, int health, int gold, int p
 
 }
 
+/**
+* The player takes a turn against a character
+* 
+* @param victim				the character the turn is taken against
+*/
 void Player::takeTurn(Character* victim)
 {
 	//boolean for valid commands
@@ -33,6 +47,7 @@ void Player::takeTurn(Character* victim)
 			cout << "What would you like to do? (Valid commands: attack, drink)\n\n";
 			getline(cin, input);
 
+			cout << endl;
 			//execute command
 			if (input == "attack")
 			{

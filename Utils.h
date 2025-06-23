@@ -1,6 +1,6 @@
 #pragma once
-#include <time.h>
-#include <random>
+#include <time.h>				//for time
+#include <random>				//for rand()
 
 /**
 *generates a random number

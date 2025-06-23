@@ -1,26 +1,31 @@
-#include "Weapon.h"
-#include "Character.h"
-#include "ICS_ConsoleHelper.h"	// for colors, sleeping, pausing...
-#include <conio.h>              // for getting characters 
-#include "2DAdventure.h"  // for other functions I stole from my gladiator project
-#include "Enemy.h"
-#include "player.h"
-#include "Constants.h"
-#include "Brute.h"
-#include "Wolf.h"	
-#include <fstream>
-#include <sstream>
+#include "Weapon.h"					//for weapon class
+#include "Character.h"				//for character class
+#include "ICS_ConsoleHelper.h"		// for colors, sleeping, pausing...
+#include <conio.h>					//for getting characters 
+#include "2DAdventure.h"			// for other functions I stole from my gladiator project
+#include "Enemy.h"					//for enemy class
+#include "player.h"					//for player class
+#include "Constants.h"				//for constants
+#include "Brute.h"					//for brute class
+#include "Wolf.h"					//for wolf class
+#include <fstream>					//for file streams
 
 using namespace std;			// for cout and endl 
 
+//entry point of the program
 int main()
 {
+	//make background black (otherwise leaving and returning to game messes up colour) and clear whatevers on termial
+	ICS_BLACK_BACKGROUND;
+	system("cls");
+
 	//seed random number
 	srand((unsigned int)time(NULL));
 
 	//make the player
-	Character* player = new Player("Nathan", 0, 0, 100, 500, 3, 100, &weapons[0]);
+	Character* player = new Player("Nathan", 0, 0, 100, 300, 3, 100, &weapons[0]);
 
+	//declare an array to store enemy names
 	SuperArray<string>  enemyNames;
 
 	//declare a variable to store input
@@ -103,8 +108,10 @@ int main()
 	//ask user for input until user dies
 	while (player->getHealth() > 0)
 	{
+		//loop through the max number of enemies in the array
 		if (enemies.getSize() < MAX_ENEMIES)
 		{
+			//add all enemies
 			addEnemy(enemies, enemyNames);
 		}
 
@@ -120,12 +127,13 @@ int main()
 		cout << "Enter " << ICS_BLUE_TEXT << "L" << ICS_WHITE_TEXT << " to open legend, and " << ICS_BLUE_TEXT << "W S A D, " << ICS_WHITE_TEXT << "to move\n";
 		input = _getch();
 
+		//run the players actions
 		playerActions(player, input, map);
 
 		//check if player hit town
 		if (map[player->getYPos()][player->getXPos()] == TOWN)
 		{
-			town(weapons, player);
+			town(player);
 		}
 
 		//make the enemies travel

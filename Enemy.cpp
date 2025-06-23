@@ -1,11 +1,20 @@
-#include "Enemy.h"
-#include <iostream>
-#include <string>
-#include "Constants.h"
-#include "Utils.h"
+#include "Enemy.h"					//for Enemy class
+#include <iostream>					//for cout, endl
+#include <string>					//for strings
+#include "Constants.h"				//for constants
+#include "Utils.h"					//for utilities
 
 /**
 * Constructor of an Enemy
+* 
+* @param name					the name of the Enemy
+* @param xPos					the xPos of the Enemy
+* @param yPos					the yPos of the Enemy
+* @param health					the health of the Enemy
+* @param gold					the gold of the Enemy
+* @param potions				the potions of the Enemy
+* @param maxHealth				the maxHealth of the Enemy
+* @param currentWeapon			the currentWeapon of the Enemy
 **/
 Enemy::Enemy(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:
@@ -14,6 +23,11 @@ Enemy::Enemy(std::string name, int xPos, int yPos, int health, int gold, int pot
 
 }
 
+/**
+* Take an automated turn
+* 
+* @param victim				the character the turn will be played against
+*/
 void Enemy::takeTurn(Character* victim)
 {
 	//only play if alive

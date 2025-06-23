@@ -1,13 +1,17 @@
-#include "Brute.h"
-#include <iostream>
-#include <string>
-#include "Constants.h"
-#include "Utils.h"
+#include "Brute.h"				//for the Brute class
+#include <iostream>				//for cout, endl
+#include <string>				//for strings
+#include "Constants.h"			//for constants
+#include "Utils.h"				//for utilites
 
 
 
 /**
-* Constructor of a Character
+* Constructor of a Brute
+* 
+* @param name					the name of the Brute
+* @param xPos					the xPos of the Brute
+* @param yPos					the yPos of the Brute
 **/
 Brute::Brute(std::string name, int xPos, int yPos)
 	:
@@ -29,20 +33,28 @@ Brute::Brute(std::string name, int xPos, int yPos)
 	//randomize the weapon for the brutes (simple weapons)
 	int newWeapon = randNumGen(0, 3);
 
+	//1/4 of the time assign this weapon
 	if (newWeapon == 0)
 	{
+		//assign fists
 		_currentWeapon =  &weapons[0];
 	}
+	//1/4 of the time assign this weapon
 	else if (newWeapon == 1)
 	{
+		//assign pugio
 		_currentWeapon = &weapons[4];
 	}
+	//1/4 of the time assign this weapon
 	else if (newWeapon == 2)
 	{
+		//assign gladius
 		_currentWeapon = &weapons[8];
 	}
+	//1/4 of the time assign this weapon
 	else
 	{
-		_currentWeapon = &weapons[1];
+		//assign warhammer
+		_currentWeapon = &weapons[5];
 	}
 }

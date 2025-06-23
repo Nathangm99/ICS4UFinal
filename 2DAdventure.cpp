@@ -1,5 +1,5 @@
 #pragma once
-#include "2DAdventure.h"
+#include "2DAdventure.h"		//for declarations
 
 /**
 * prints the fighter's stats
@@ -14,18 +14,31 @@ void printStats(Character* player, Character* enemy)
 	cout << "Weapon: " << player->getCurrentWeapon()->getName() << "\t\t\t " << "Weapon: " << enemy->getCurrentWeapon()->getName() << endl;
 }
 
-void addEnemy(SuperArray<Character*>& enemies, SuperArray<string>& enemyNames) //NOTE gonna add name array parameter once i have name array, prolly coords too
+/**
+* Adds an enemy to the enemy array to keep it always at 5
+* 
+* @param enemies			//array of enemies
+* @param enemyNames			//array of enemy names
+*/
+void addEnemy(SuperArray<Character*>& enemies, SuperArray<string>& enemyNames)
 {
+	//the range of the spawn area that theyll spawn in
 	int spawnDiff = randNumGen(0, 2);
+
+	//random num to decide which enemy is made
 	int enemyType = randNumGen(0, 2);
+
+	//1/3 of the time make a brute
 	if (enemyType == 0)
 	{
 		enemies.pushBack(new Brute(enemyNames[0] + " the Brute", 19 - spawnDiff, 10 - spawnDiff));
 	}
+	//1/3 of the time make a marksman
 	else if (enemyType == 1)
 	{
 		enemies.pushBack(new Marksman(enemyNames[0] + " the Marksman", 0 + spawnDiff, 10 - spawnDiff));
 	}
+	//1/3 of the time make a wolf
 	else
 	{
 		enemies.pushBack(new Wolf(enemyNames[0] + " the Wolf", 19 - spawnDiff, 0 + spawnDiff));
@@ -35,7 +48,7 @@ void addEnemy(SuperArray<Character*>& enemies, SuperArray<string>& enemyNames) /
 }
 
 /**
-* makes two people fight
+* makes two characters fight
 *
 * @param player             The player's strucutre
 * @param enemy              The enemy's structure
@@ -60,8 +73,8 @@ bool fight(Character* player, Character* enemy)
 		system("cls");
 
 		//print both stats
-
 		player->print();
+		cout << endl;
 		enemy->print();
 
 		//pause the program 
@@ -75,6 +88,7 @@ bool fight(Character* player, Character* enemy)
 
 		//print both stats
 		player->print();
+		cout << endl;
 		enemy->print();
 
 		//pause the program 
@@ -126,6 +140,12 @@ bool fight(Character* player, Character* enemy)
 }
 
 
+/**
+* The shop function to buy weapons
+* 
+* @param weapons			array of weapons to choose from
+* @param player				the player, so they can change their weapon
+*/
 void shop(const Weapon weapons[], Character* player)
 {
 	//boolean to tell whether the user is in the shop
@@ -160,6 +180,7 @@ void shop(const Weapon weapons[], Character* player)
 		//check if they want to buy
 		if (input == "buy")
 		{
+			//make a boolean to check if the input is valid
 			bool validName = false;
 
 			//have the user select a weapon
@@ -256,6 +277,12 @@ void shop(const Weapon weapons[], Character* player)
 	}
 }
 
+
+/**
+* The casino minigame
+* 
+* @param player				the player who's gonna gamble
+*/
 void casino(Character* player)
 {
 	//clear screen
@@ -606,7 +633,7 @@ void casino(Character* player)
 
 							}
 							//tie
-							else if (sum = computerSum)
+							else if (sum == computerSum)
 							{
 								//tell player it's a push
 								cout << "push!" << endl;
@@ -735,11 +762,17 @@ void casino(Character* player)
 	}
 }
 
+/**
+* The shop to buy potions
+* 
+* @param player				the player so they can add potions 
+*/
 void brewery(Character* player)
 {
 	//bool to stay in brewery
 	bool brewery = true;
 
+	//while in the brewry loop
 	while (brewery)
 	{
 		//clear screen
@@ -808,6 +841,14 @@ void brewery(Character* player)
 	}
 }
 
+
+/**
+* The function to preform all the Enemies travelling
+* 
+* @param enemies			the array of enemies
+* @param player				the player pointer
+* @param enemyNames			the array of enemy names
+*/
 void enemiesMove(SuperArray<Character*> enemies, Character* player, char map[GRID_HEIGHT][GRID_WIDTH])
 {
 	//loop through enemies movement choices
@@ -849,6 +890,14 @@ void enemiesMove(SuperArray<Character*> enemies, Character* player, char map[GRI
 	}
 }
 
+
+/**
+* This function checks if there has been a collision between player and enemy
+* 
+* @param enemies			array of enemies
+* @param player				the player pointer
+* @param enemyNames			the array of enemy names
+*/
 void collisionCheck(SuperArray<Character*> enemies, Character* player, SuperArray<string> enemyNames)
 {
 	//loop through enemies
@@ -876,7 +925,12 @@ void collisionCheck(SuperArray<Character*> enemies, Character* player, SuperArra
 	}
 }
 
-void town(const Weapon enemies[], Character* player)
+/**
+* The function for the activities preformed in the town
+* 
+* @param player			the player to be passed into minigames
+*/
+void town(Character* player)
 {
 
 	//create boolean to represent if the player is in town or not
@@ -901,16 +955,19 @@ void town(const Weapon enemies[], Character* player)
 		//check if they said shop
 		if (input == "shop")
 		{
+			//enter shop
 			shop(weapons, player);
 		}
 		//check if they said casino
 		else if (input == "casino")
 		{
+			//enter casino
 			casino(player);
 		}
 		//check if they said brewery
 		else if (input == "brewery")
 		{
+			//enter brewery
 			brewery(player);
 		}
 		//check if they said to leave
@@ -963,6 +1020,14 @@ void openLegend()
 
 }
 
+
+/**
+* the function for handling player actions
+* 
+* @param player			the player making the actions
+* @param input			the input to dictate the action
+* @param map			the 2D array that has map info
+*/
 void playerActions(Character* player, char input, char map[GRID_HEIGHT][GRID_WIDTH])
 {
 	//check if they clicked L
@@ -1073,7 +1138,7 @@ void printGrid(char grid[GRID_HEIGHT][GRID_WIDTH], Character* player, SuperArray
 					isEnemy = true;
 				}
 			}
-			//check if the player is there
+			//check if the player  is there
 			if (row == player->getYPos() and player->getXPos() == column and not isEnemy)
 			{
 				//print them 

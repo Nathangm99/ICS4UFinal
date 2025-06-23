@@ -1,11 +1,23 @@
-#include "Weapon.h"
-#include "Character.h"
-#include <iostream>
-#include <string>
-#include "Constants.h"
-#include "Utils.h"
+#include "Weapon.h"				//for Weapon class
+#include "Character.h"			//for Character class
+#include <iostream>				//for cout, endl
+#include <string>				//for strings
+#include "Constants.h"			//for constants
+#include "Utils.h"				//for utilities
 
 
+/**
+* Constructor for Character
+* 
+* @param name					the name of the character
+* @param xPos					the xPos of the character
+* @param yPos					the yPos of the character
+* @param health					the health of the character
+* @param gold					the gold of the character
+* @param potions				the potions of the character
+* @param maxHealth				the maxHealth of the character
+* @param currentWeapon			the currentWeapon of the character
+*/
 Character::Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon)
 	:	
 	_name(name),
@@ -21,7 +33,9 @@ Character::Character(std::string name, int xPos, int yPos, int health, int gold,
 }
 
 /**
-* Copy Constructor of a Character
+* Copy Constructor for Character
+* 
+* @param other			the character who's attributes are being copied and initialzied into the new character
 **/
 Character::Character(const Character& other)
 	:
@@ -37,8 +51,14 @@ Character::Character(const Character& other)
 
 }
 
+/**
+* Assignment operator for characters
+* 
+* @param other			the character who's attributes are being copied
+*/
 void Character::operator=(const Character& other)
 {
+	//set the values equal to the other character's values
 	_name = other._name;
 	_xPos = other._xPos;
 	_yPos = other._yPos;
@@ -47,10 +67,13 @@ void Character::operator=(const Character& other)
 	_potions = other._potions;
 	_maxHealth = other._maxHealth;
 
+	//if current weapon isnt null
 	if (_currentWeapon)
 	{
+		//deallocate memory of the pointer
 		delete _currentWeapon;
 	}
+	//point currentWeapon at a copy of the Weapon the other pointer is pointing at
 	_currentWeapon = new Weapon(*(other._currentWeapon));
 }
 
@@ -59,12 +82,17 @@ void Character::operator=(const Character& other)
 **/
 Character::~Character()
 {
+	//if the currentWeapon pointer isnt null
 	if (_currentWeapon)
 	{
+		//decallocate currentWeapon
 		delete _currentWeapon;
 	}
 }
 
+/**
+* to print the character's attributes
+*/
 void Character::print()
 {
 	//print each of the Character's attributes
@@ -73,11 +101,21 @@ void Character::print()
 	std::cout << "Potions: " << _potions << std::endl;
 }
 
-
-
-
+/**
+* set the weapon of the character
+* 
+* @param newWeapon			the weapon being given to the character
+*/
 void Character::setWeapon(const Weapon newWeapon)
 {
+	//if the currentWeapon pointer isnt null
+	if (_currentWeapon)
+	{
+		//decallocate currentWeapon
+		delete _currentWeapon;
+	}
+
+	//point the currentWeapon at the new weapon
 	_currentWeapon = new Weapon(newWeapon);
 }
 
@@ -86,6 +124,7 @@ void Character::setWeapon(const Weapon newWeapon)
 */
 void Character::drinkPotion()
 {
+	//if they have potions
 	if (_potions > 0)
 	{
 		//if their health is below max health

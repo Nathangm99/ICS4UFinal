@@ -26,7 +26,7 @@ const char PLAYER = 'P';
 
 const char TOWN = 223;
 const int BOB_DONATE_CAP = 1000;
-const int NUM_OF_WEAPONS = 8;
+const int NUM_OF_WEAPONS = 9;
 const int POTION_PRICE = 30;
 const int TOWN_Y = 3;
 const int TOWN_X = 19;
@@ -38,9 +38,9 @@ const Weapon weapons[] =
 	Weapon("fists", 100, 20 , 5, 0, "punches"),
 	Weapon("teeth", 70, 70, 30, 0, "bites"),
 	Weapon("claws", 80, 15, 10, 0, "gouges"),
-	Weapon("desert eagle", 30, 60, 50, 120, "shoots"),
+	Weapon("deagle", 30, 60, 50, 120, "shoots"),
 	Weapon("pugio", 100, 30, 15, 55, "stabs"),
-	Weapon("mjolnir", 60, 70, 10, 60, "bludgeon"),
+	Weapon("Warhammer", 60, 70, 10, 60, "bludgeon"),
 	Weapon("bow", 80, 30, 20, 24, "snipes"),
 	Weapon("pilum", 30, 80, 60, 40, "impales"),
 	Weapon("gladius", 65, 60, 50, 30, "slashes")

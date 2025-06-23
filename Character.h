@@ -1,7 +1,7 @@
 #pragma once
-#include <string>
-#include "Weapon.h"
-#include "SuperArray.h"
+#include <string>				//for strings
+#include "Weapon.h"				//for the Weapon class
+#include "SuperArray.h"			//for the superArray class
  
 /**
 *	definition of a Character
@@ -22,12 +22,24 @@ protected:
 public:
 
 	/**
-	* Constructor of a Character
-	**/
+	* Constructor for Character
+	*
+	* @param name					the name of the character
+	* @param xPos					the xPos of the character
+	* @param yPos					the yPos of the character
+	* @param health					the health of the character
+	* @param gold					the gold of the character
+	* @param potions				the potions of the character
+	* @param maxHealth				the maxHealth of the character
+	* @param currentWeapon			the currentWeapon of the character
+
+	*/
 	Character(std::string name, int xPos, int yPos, int health, int gold, int potions, int maxHealth, const Weapon* currentWeapon);
 	
 	/**
-	* Copy Constructor of a Character
+	* Copy Constructor for Character
+	*
+	* @param other			the character who's attributes are being copied and initialzied into the new character
 	**/
 	Character(const Character&);
 
@@ -37,22 +49,20 @@ public:
 	virtual ~Character();
 
 	/**
-* Operator for Character
-**/
+	* Assignment operator for characters
+	*
+	* @param other			the character who's attributes are being copied
+	*/
 	void operator=(const Character& other);
 	
 	/**
-	* prints the Character's important attributes to the console in a user friendly format.
-	*
-	* @param Character          The Character to print.
+	* to print the character's attributes
 	*/
 	void print();
 
 
 	/**
 	* makes the Character drink a potion if they have one and are alive.
-	*
-	* @param Character          The Character trying to drink a potion.
 	*/
 	void drinkPotion();
 
@@ -65,6 +75,12 @@ public:
 	*/
 	virtual void buyWeapon(int index, const Weapon weapon[]) = 0;
 
+
+	/**
+	* set the weapon of the character
+	*
+	* @param newWeapon			the weapon being given to the character
+	*/
 	void setWeapon(const Weapon newWeapon);
 
 	/**
@@ -74,46 +90,74 @@ public:
 	*/
 	void attack (Character* victim);
 
+
+	/**
+	* retrieves character's name 
+	*/
 	std::string getName()
 	{
 		return _name;
 	}
 
+	/**
+	* retrieves character's xPos
+	*/
 	int& getXPos()
 	{
 		return _xPos;
 	}
 
+	/**
+	* retrieves character's yPos
+	*/
 	int& getYPos()
 	{
 		return _yPos;
 	}
 
+	/**
+	* retrieves character's health
+	*/
 	int& getHealth()
 	{
 		return _health;
 	}
 
+	/**
+	* retrieves character's gold
+	*/
 	int& getGold()
 	{
 		return _gold;
 	}
 
+	/**
+	* retrieves character's potions
+	*/
 	int& getPotions()
 	{
 		return _potions;
 	}
 
+	/**
+	* retrieves character's currentWeapon 
+	*/
 	const Weapon* getCurrentWeapon()
 	{
 		return _currentWeapon;
 	}
 
+	/**
+	* retrieves character's max health
+	*/
 	int getMaxHealth()
 	{
 		return _maxHealth;
 	}
 
+	/**
+	* plays a turn 
+	*/
 	virtual void takeTurn(Character* victim) = 0;
 
 
