@@ -14,7 +14,7 @@ void printStats(Character* player, Character* enemy)
 	cout << "Weapon: " << player->getCurrentWeapon()->getName() << "\t\t\t " << "Weapon: " << enemy->getCurrentWeapon()->getName() << endl;
 }
 
-void addEnemy(SuperArray<Character*> enemies, SuperArray<string>& enemyNames) //NOTE gonna add name array parameter once i have name array, prolly coords too
+void addEnemy(SuperArray<Character*>& enemies, SuperArray<string>& enemyNames) //NOTE gonna add name array parameter once i have name array, prolly coords too
 {
 	int spawnDiff = randNumGen(0, 2);
 	int enemyType = randNumGen(0, 2);

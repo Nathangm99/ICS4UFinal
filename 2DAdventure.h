@@ -26,7 +26,7 @@ using namespace std;       //include standard namespace
 */
 void printStats(Character* player, Character* enemy);
 
-void addEnemy(SuperArray<Character*> enemies, SuperArray<string>& enemyNames);
+void addEnemy(SuperArray<Character*>& enemies, SuperArray<string>& enemyNames);
 
 /**
 * makes two people fight
