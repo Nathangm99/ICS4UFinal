@@ -32,9 +32,37 @@ Character::Character(const Character& other)
 	_gold(other._gold),
 	_potions(other._potions),
 	_maxHealth(other._maxHealth),
-	_currentWeapon(other._currentWeapon)
+	_currentWeapon(new Weapon(*(_currentWeapon)))
 {
 
+}
+
+void Character::operator=(const Character& other)
+{
+	_name = other._name;
+	_xPos = other._xPos;
+	_yPos = other._yPos;
+	_health = other._health;
+	_gold = other._gold;
+	_potions = other._potions;
+	_maxHealth = other._maxHealth;
+
+	if (_currentWeapon)
+	{
+		delete _currentWeapon;
+	}
+	_currentWeapon = new Weapon(*(other._currentWeapon));
+}
+
+/**
+* Destructor of a Character
+**/
+Character::~Character()
+{
+	if (_currentWeapon)
+	{
+		delete _currentWeapon;
+	}
 }
 
 void Character::print()
@@ -45,12 +73,7 @@ void Character::print()
 	std::cout << "Potions: " << _potions << std::endl;
 }
 
-/**
-* Destructor of a Character
-**/
-Character::~Character()
-{
-}
+
 
 
 void Character::setWeapon(const Weapon newWeapon)

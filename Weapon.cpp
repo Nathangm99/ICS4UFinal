@@ -13,6 +13,16 @@ void Weapon::print() const
 }
 
 
+Weapon::Weapon(const Weapon* copy) :
+	_name(copy->_name),
+	_hitChance(copy->_hitChance),
+	_maxAttack(copy->_maxAttack),
+	_minAttack(copy->_minAttack),
+	_price(copy->_price),
+	_attackName(copy->_attackName)
+{
+}
+
 Weapon::Weapon(std::string name, int hitChance, int maxAttack, int minAttack, int price, std::string attackName)
 	:
 	_name(name),

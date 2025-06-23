@@ -17,7 +17,7 @@ protected:
 	int _gold = 0;						  //how much gold the player has
 	int _potions = 0;					  //how many potions they have
 	int _maxHealth = 0;			   	   	  //their max health
-	const Weapon* _currentWeapon;				  //their current weapon
+	const Weapon* _currentWeapon;		  //their current weapon
 
 public:
 

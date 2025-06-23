@@ -15,6 +15,8 @@ public:
 
 	Weapon() = default;//i forget why i put this here?
 
+	Weapon(const Weapon* copy);
+
 	Weapon(std::string name, int hitChance, int maxAttack, int minAttack, int price, std::string attackName);
 		
 
